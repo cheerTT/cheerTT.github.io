@@ -299,13 +299,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/alg/中国" data-toggle="tooltip" data-placement="top" title="zhongguo">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/alg/我们都是一家人" data-toggle="tooltip" data-placement="top" title="womendoushiyijiaren">下一篇 &rarr;</a>
+                            <a href="/alg/中国" data-toggle="tooltip" data-placement="top" title="zhongguo">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
