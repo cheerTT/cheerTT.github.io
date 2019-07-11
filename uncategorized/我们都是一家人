@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://cheertt.top/alg/我们都是一家人">
+    <link rel="canonical" href="http://cheertt.top/uncategorized/我们都是一家人">
 
     <!-- Bootstrap Core CSS -->
 
@@ -227,7 +227,7 @@
                         
                         <li>
            
-                            <a  href="alg">算法</a>
+                            <a  href="categories/alg">算法</a>
                            
                         </li>
                         
@@ -305,7 +305,7 @@
                     
                     
                         <li class="next">
-                            <a href="/alg/这是一个遥远的地方" data-toggle="tooltip" data-placement="top" title="zheshiyigeyaoyuandedifang">下一篇 &rarr;</a>
+                            <a href="/alg/计算机" data-toggle="tooltip" data-placement="top" title="jisuanji">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
@@ -519,7 +519,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://cheertt.top/alg/我们都是一家人/js/jquery.tagcloud.js",function(){
+        async("http://cheertt.top/uncategorized/我们都是一家人/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},

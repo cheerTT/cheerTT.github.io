@@ -227,7 +227,7 @@
                         
                         <li>
            
-                            <a  href="alg">算法</a>
+                            <a  href="categories/alg">算法</a>
                            
                         </li>
                         
@@ -300,12 +300,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/alg/这是一个遥远的地方" data-toggle="tooltip" data-placement="top" title="zheshiyigeyaoyuandedifang">&larr; 上一篇</a>
+                            <a href="/uncategorized/我们都是一家人" data-toggle="tooltip" data-placement="top" title="womendoushiyijiaren">&larr; 上一篇</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/uncategorized/hello-world" data-toggle="tooltip" data-placement="top" title="Hello World">下一篇 &rarr;</a>
+                            <a href="/alg/你说对不对啊" data-toggle="tooltip" data-placement="top" title="nishuoduibuduia">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>

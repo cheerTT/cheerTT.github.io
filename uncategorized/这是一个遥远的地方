@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://cheertt.top/alg/这是一个遥远的地方">
+    <link rel="canonical" href="http://cheertt.top/uncategorized/这是一个遥远的地方">
 
     <!-- Bootstrap Core CSS -->
 
@@ -227,7 +227,7 @@
                         
                         <li>
            
-                            <a  href="alg">算法</a>
+                            <a  href="categories/alg">算法</a>
                            
                         </li>
                         
@@ -300,12 +300,12 @@
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/alg/我们都是一家人" data-toggle="tooltip" data-placement="top" title="womendoushiyijiaren">&larr; 上一篇</a>
+                            <a href="/alg/你说对不对啊" data-toggle="tooltip" data-placement="top" title="nishuoduibuduia">&larr; 上一篇</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/alg/计算机" data-toggle="tooltip" data-placement="top" title="jisuanji">下一篇 &rarr;</a>
+                            <a href="/uncategorized/hello-world" data-toggle="tooltip" data-placement="top" title="Hello World">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
@@ -519,7 +519,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://cheertt.top/alg/这是一个遥远的地方/js/jquery.tagcloud.js",function(){
+        async("http://cheertt.top/uncategorized/这是一个遥远的地方/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
