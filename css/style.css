@@ -311,7 +311,7 @@ pre {
   overflow: hidden;
   white-space: nowrap;
   padding: 19px 0 0 0;
-  font-size: 14px;
+  font-size: 18px;
   color: #505050;
   display: none;
 }
@@ -344,7 +344,7 @@ pre {
 .main-navigation .menu li ul {
   visibility: hidden;
   background: #fff;
-  text-align: left;
+  text-align: center;
   padding: 7px 0px;
   margin: 0;
   position: absolute;
