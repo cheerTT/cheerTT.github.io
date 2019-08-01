@@ -239,7 +239,7 @@ pre {
   position: relative;
   text-align: center;
   line-height: 0;
-  height: 1px;
+  height: 1px;collapse
   width: 100%;
   background: #fff url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg);
   background-repeat: repeat;
@@ -296,7 +296,7 @@ pre {
 }
 /* main-navigation */
 .main-navigation {
-  text-align: center;
+  text-align: right
   background: #fff;
   border-top: 1px solid #ebebeb;
   margin-bottom: 20px;
@@ -372,7 +372,7 @@ pre {
   margin-bottom: -2px;
 }
 .main-navigation .navbar-header {
-  text-align: center;
+  text-align: right;
 }
 .main-navigation .navbar-header i {
   height: 56px;
