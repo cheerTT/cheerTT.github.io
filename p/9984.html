@@ -187,7 +187,7 @@
     
     <div class="post-body post-content">
         <h3 id="0-简介"><a href="#0-简介" class="headerlink" title="0 简介"></a>0 简介</h3><p>本博客笔记主要根据 <a href="https://github.com/chenyuntc/pytorch-book" target="_blank" rel="noopener">《深度学习框架PyTorch：入门与实践》</a> 整理而来，知识要点不算详细，主要为了知识点框架的罗列。</p>
-<p><img src="http://puj2izln4.bkt.clouddn.com/notebook/pytorch.jpg" alt="cs231n-numpy"></p>
+<p><img src="https://coding.net/u/cheertt/p/assets/git/raw/master/notebook/pytorch.jpg" alt="cs231n-numpy"></p>
 <h3 id="1-PyTorch简介"><a href="#1-PyTorch简介" class="headerlink" title="1 PyTorch简介"></a>1 PyTorch简介</h3><p>Tensorflow、PyTorch、MXNet 几乎所有的框架都是基于计算图的，而计算图又分为静态计算图和动态计算图。静态计算图先定义再运行(define and run)，一次定义多次运行，而动态计算图是在运行过程中被定义的，在运行时构建(define by run)，可以多次构建多次运行。PyTorch和Tensorflow都是基于计算图的深度学习框架，PyTorch使用的是动态图，而Tensorflow使用的是静态图。在PyTorch中每一次前向传播（每一次运行代码）都会创建一幅新的计算图。</p>
 <p>静态图一旦创建就不能修改，而且静态图定义的时候，使用了特殊的语法，就像新学的一门语言。这还意味着你无法使用if、while、for-loop等常用的Python语句。因此静态图不得不为这些操作专门设计语法，同时在构件图的时候必须把所有可能出现的情况都包含进去，这也导致了静态图过于庞大，可能占用过高的显存。动态图框架就没有这个问题，它可以使用Python的if、while、for-loop等条件语句，最终创建的计算图取决于你执行的条件分支。</p>
 <p>动态图的思想直观明了，更符合人的思考过程。动态图的方式使得我们可以任意修改前向传播，还可以随时查看变量的值。如果说静态图框架好比C++，每次运行都要编译才行(session.run)，那么动态图框架就是Python,动态执行，可以交互式查看修改。</p>
