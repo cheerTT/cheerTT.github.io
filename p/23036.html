@@ -21,8 +21,9 @@
     <meta name="keywords" content="笔记,算法">
 
 
-    <meta name="description" content="一次刷到爽——单调栈所谓单调栈就是栈里面存在的数据都是递增或者递减的，当想要push一个违背上述规则的元素时，需要不断移除栈顶元素知道满足上述规则后再push该元素。
-根据上述描述，可以总结出的...">
+    <meta name="description" content="一次刷到爽——单调栈
+所谓单调栈就是栈里面存在的数据都是递增或者递减的，当想要push一个违背上述规则的元素时，需要不断移除栈顶元素知道满足上述规则后再push该元素。
+根据上述描述，可以总结出...">
 
 
 
@@ -181,7 +182,8 @@
     </div>
     
     <div class="post-body post-content">
-        <h3 id="一次刷到爽——单调栈"><a href="#一次刷到爽——单调栈" class="headerlink" title="一次刷到爽——单调栈"></a>一次刷到爽——单调栈</h3><p>所谓单调栈就是栈里面存在的数据都是递增或者递减的，当想要push一个违背上述规则的元素时，需要不断移除栈顶元素知道满足上述规则后再push该元素。</p>
+        <h3 id="一次刷到爽——单调栈"><a href="#一次刷到爽——单调栈" class="headerlink" title="一次刷到爽——单调栈"></a>一次刷到爽——单调栈</h3><p><img src="https://taggle-web.oss-cn-shanghai.aliyuncs.com/blog/algorithm/1.jpg" alt="单调栈"></p>
+<p>所谓单调栈就是栈里面存在的数据都是递增或者递减的，当想要push一个违背上述规则的元素时，需要不断移除栈顶元素知道满足上述规则后再push该元素。</p>
 <p>根据上述描述，可以总结出的通用代码模板如下： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">commonStack</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 判断当前栈不满足递增条件，不听出栈</span></span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; nums[stack.peek()] &gt; nums[i]) &#123;</span><br><span class="line">            <span class="keyword">int</span> curId = stack.pop();</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 知道满足递增栈条件才插入</span></span><br><span class="line">    	stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -276,9 +278,9 @@
 <div class="article-nav prev-next-wrap clearfix">
     
     
-        <a href="/p/17317.html" class="next-post btn btn-default" title='Ubuntu16.04 安装CUDA9.0和cuDNN7.4.1'>
+        <a href="/p/46253.html" class="next-post btn btn-default" title='彭明辉-研究生手册'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Ubuntu16.04 安装CUDA9.0和cuDNN7.4.1</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">彭明辉-研究生手册</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
