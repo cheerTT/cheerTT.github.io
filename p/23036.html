@@ -1,0 +1,391 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="cheerttの个人博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://cheertt.top">
+    <!--SEO-->
+
+    <meta name="keywords" content="笔记,算法">
+
+
+    <meta name="description" content="一次刷到爽——单调栈所谓单调栈就是栈里面存在的数据都是递增或者递减的，当想要push一个违背上述规则的元素时，需要不断移除栈顶元素知道满足上述规则后再push该元素。
+根据上述描述，可以总结出的...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>一次刷到爽——单调栈 | cheerttの个人博客</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="cheerttの个人博客" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-color:#e67e22;">
+
+    
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://cheertt.top">cheerttの个人博客</a>
+                </div>
+		<div style="float:left; line-height: 4em; width:400px; height:4em; background-image:url('https://coding.net/u/cheertt/p/assets/git/raw/master/default/logo.png')">
+		    
+		
+		</div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i><span style="font-size:16px;">首页</span></a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/java/"><i class="fa "></i><span style="font-size:16px;">Java</span></a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i><span style="font-size:16px;">算法</span></a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/notebook/"><i class="fa "></i><span style="font-size:16px;">笔记</span></a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/booking/"><i class="fa "></i><span style="font-size:16px;">读书</span></a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i><span style="font-size:16px;">时间轴</span></a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="一次刷到爽——单调栈">
+            
+	            一次刷到爽——单调栈
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/algorithm/">algorithm</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/笔记/">笔记</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/07/30</span>
+        </span>
+        
+            <span class="fa-wrap">
+                <i class="fa fa-eye"></i>
+                <span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h3 id="一次刷到爽——单调栈"><a href="#一次刷到爽——单调栈" class="headerlink" title="一次刷到爽——单调栈"></a>一次刷到爽——单调栈</h3><p>所谓单调栈就是栈里面存在的数据都是递增或者递减的，当想要push一个违背上述规则的元素时，需要不断移除栈顶元素知道满足上述规则后再push该元素。</p>
+<p>根据上述描述，可以总结出的通用代码模板如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">commonStack</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 判断当前栈不满足递增条件，不听出栈</span></span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; nums[stack.peek()] &gt; nums[i]) &#123;</span><br><span class="line">            <span class="keyword">int</span> curId = stack.pop();</span><br><span class="line">            <span class="comment">// ...</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 知道满足递增栈条件才插入</span></span><br><span class="line">    	stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>单调栈这种数据结构，通常应用于一位数组上。如果遇到的问题和前后元素之间的大小关系有关的话，可以尝试使用单调栈解决。使用单调栈解决的题目，时空复杂度一般均是O(n)。</p>
+<p>下面，来看看《剑指offer》第33题，<a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/" target="_blank" rel="noopener">二叉搜索树的后续遍历序列</a></p>
+<blockquote>
+<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 <code>true</code>，否则返回 <code>false</code>。假设输入的数组的任意两个数字都互不相同。</p>
+<p>输入: [1,6,3,2,5]<br>输出: false</p>
+<p>输入: [1,3,2,6,5]<br>输出: true</p>
+</blockquote>
+<p>针对二叉搜索树的后续遍历序列是按照左-右-根的顺序遍历。可以发现从后往前的顺序列就是分别经过根节点，右字树，左子树。由于二叉搜索树的左子树节点小于根节点小于右字树节点。我们从后向前遍历后序序列，将根节点和右字树节点入栈（我们维护一个递增栈，因为右字树节点总是大于根节点的），当出现小于当前栈顶元素的值时，我们弹出栈维护一个新的递增栈。</p>
+<p>结合上述<code>commonStack</code>代码模板，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">verifyPostorder</span><span class="params">(<span class="keyword">int</span>[] postorder)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 假设初始根节点无限大</span></span><br><span class="line">    <span class="keyword">int</span> root = Integer.MAX_VALUE;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = postorder.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="comment">// 左子树节点大于根节点</span></span><br><span class="line">        <span class="keyword">if</span> (postorder[i] &gt; root) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 将当前 root 节点的所有右字树节点入栈</span></span><br><span class="line">        <span class="keyword">while</span>(!stack.isEmpty() &amp;&amp; stack.peek() &gt; postorder[i]) &#123;</span><br><span class="line">            root = stack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(postorder[i]);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面再看看字节跳动面试官问到烂的<a href="https://leetcode-cn.com/problems/trapping-rain-water/" target="_blank" rel="noopener">接雨水(leetcode 42)</a></p>
+<blockquote>
+<p>给定 <em>n</em> 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</p>
+<p>输入: [0,1,0,2,1,0,1,3,2,1,2,1]<br>输出: 6</p>
+</blockquote>
+<p>该题目有很多解法，详情可到<a href="https://leetcode-cn.com/problems/trapping-rain-water/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-w-8/" target="_blank" rel="noopener">此处</a>查看，这里我们只讨论单调栈解法。</p>
+<p>维护一个递减栈，累加统计能接到的最大雨水量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; height.length; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; height[stack.peek()] &lt; height[i]) &#123;</span><br><span class="line">            <span class="keyword">int</span> curId = stack.pop();</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (!stack.isEmpty()) &#123;</span><br><span class="line">                res += (Math.min(height[i], height[stack.peek]) - height[curId]) * (i - stack.peek() - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面再看看华为面试过程中遇到的两道问题：<a href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/" target="_blank" rel="noopener">柱状图的最大面积(leetcode 84)</a> 和 <a href="https://leetcode-cn.com/problems/remove-duplicate-letters/" target="_blank" rel="noopener">去除重复字母(leetcode 316)</a> </p>
+<p>对于柱状图的最大面积，最大矩形的面积的总是和相邻矩形块的的高度相关，为此我们可以维护一个递增栈来解决，因为我们要计算的是凸出来的最大面积所以用递增栈，而接雨水要计算的是凹进去的最多雨水所以用递减栈。</p>
+<blockquote>
+<p>给定 <em>n</em> 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。求在该柱状图中，能够勾勒出来的矩形的最大面积。</p>
+<p>输入: [2,1,5,6,2,3]<br>输出: 10</p>
+</blockquote>
+<p>结合一开始给出的commonStack代码模板，可得到代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(<span class="keyword">int</span>[] heights)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 扩展两边。为了便于计算</span></span><br><span class="line">    <span class="keyword">int</span>[] n_heights = <span class="keyword">new</span> <span class="keyword">int</span>[heights.length + <span class="number">2</span>];</span><br><span class="line">    System.arraycopy(heigths, <span class="number">0</span>, n_heights, <span class="number">1</span>, heights.length);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n_heights.length; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty &amp;&amp; n_heights[stack.peek()] &gt; n_heights[i]) &#123;</span><br><span class="line">            <span class="keyword">int</span> curId = stack.pop();</span><br><span class="line">            res = Math.max(res, (i - stack.peek() - <span class="number">1</span>) * n_height[curId]);</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于去除重复字母，此类题目都有一个限定条件——保持字符的相对位置不变。由于要保持字典序最小，那肯定用递增栈且栈中存放的就是满足最终条件的解。</p>
+<blockquote>
+<p>给你一个仅包含小写字母的字符串，请你去除字符串中重复的字母，使得每个字母只出现一次。需保证返回结果的字典序最小（要求不能打乱其他字符的相对位置）。</p>
+<p>输入: “bcabc”<br>输出: “abc”</p>
+<p>输入: “cbacdcbc”<br>输出: “acdb”</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">removeDuplicateLetters</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    </span><br><span class="line">	Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek(i) &gt; s.charAt(i) &amp;&amp; s.indexOf(stack.peek(), i) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        	stack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (Character c : stack) &#123;</span><br><span class="line">        sb.append(c);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面还有几道题目也可以用单调栈解决，思路大同小异。</p>
+<p><a href="https://leetcode-cn.com/problems/daily-temperatures/" target="_blank" rel="noopener">每日温度(leetcode 739)</a></p>
+<blockquote>
+<p>请根据每日 气温 列表，重新生成一个列表。对应位置的输出为：要想观测到更高的气温，至少需要等待的天数。如果气温在这之后都不会升高，请在该位置用 0 来代替。</p>
+<p>输入 [73, 74, 75, 71, 69, 72, 76, 73]<br>输出 [1, 1, 4, 2, 1, 1, 0, 0]</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当前气温往后更高的气温，不算本身，维护递减栈计算</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] dailyTemperatures(<span class="keyword">int</span>[] T) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[T.length];</span><br><span class="line">    </span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; T.length; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek() &lt; T[i]) &#123;</span><br><span class="line">            <span class="keyword">int</span> curId = stack.pop();</span><br><span class="line">            res[curId] = (i - curId);</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://leetcode-cn.com/problems/online-stock-span/" target="_blank" rel="noopener">股票价格的跨度(leetcode 901)</a></p>
+<blockquote>
+<p>编写一个 <code>StockSpanner</code> 类，它收集某些股票的每日报价，并返回该股票当日价格的跨度。今天股票价格的跨度被定义为股票价格小于或等于今天价格的最大连续日数（从今天开始往回数，包括今天）。</p>
+<p>输入 <code>[100, 80, 60, 70, 60, 75, 85]</code><br>输出 <code>[1, 1, 1, 2, 1, 4, 6]</code>。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 维护一个递减栈，包含当前</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StockSpanner</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    Stack&lt;Integer&gt; stack;</span><br><span class="line">    Stack&lt;Integer&gt; cache;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StockSpanner</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        cache = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">next</span><span class="params">(<span class="keyword">int</span> price)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> ans = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek() &lt;= price) &#123;</span><br><span class="line">            stack.pop();</span><br><span class="line">            ans += cache.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 若是递减的，直接插入1；</span></span><br><span class="line">        stack.push(price);</span><br><span class="line">       	cache.push(ans);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray/" target="_blank" rel="noopener">最短无序连续子数组(leetcode 581)</a></p>
+<blockquote>
+<p>给定一个整数数组，你需要寻找一个<strong>连续的子数组</strong>，如果对这个子数组进行升序排序，那么整个数组都会变为升序排序。你找到的子数组应是<strong>最短</strong>的，请输出它的长度。</p>
+<p>输入: [2, 6, 4, 8, 10, 9, 15]<br>输出: 5<br>解释: 你只需要对 [6, 4, 8, 10, 9] 进行升序排序，那么整个表都会变为升序排序。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对于该题，需要分别从左往右和从右往左寻找第一个发生交换的位置（表示不是正常排序）</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findUnsortedSubarray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> left = nums.length;</span><br><span class="line">    <span class="keyword">int</span> right = -<span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 递增栈</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; nums[stack.peek()] &gt; nums[i]) &#123;</span><br><span class="line">            left = Math.min(left, stack.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    <span class="comment">// 递减栈</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = nums.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; nums[stack.peek()] &lt; nums[i]) &#123;</span><br><span class="line">            right = Math.max(right, stack.pop());</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(i);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> left &lt; right ? right - left + <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://leetcode-cn.com/problems/next-greater-element-i/" target="_blank" rel="noopener">下一个更大的元素(leetcode 496)</a></p>
+<blockquote>
+<p>给定两个 没有重复元素 的数组 nums1 和 nums2 ，其中nums1 是 nums2 的子集。找到 nums1 中每个元素在 nums2 中的下一个比其大的值。nums1 中数字 x 的下一个更大元素是指 x 在 nums2 中对应位置的右边的第一个比 x 大的元素。如果不存在，对应位置输出 -1 。</p>
+<p>输入: nums1 = [4,1,2], nums2 = [1,3,4,2].<br>输出: [-1,3,-1]<br>解释:<br>    对于num1中的数字4，你无法在第二个数组中找到下一个更大的数字，因此输出 -1。<br>    对于num1中的数字1，第二个数组中数字1右边的下一个较大数字是 3。<br>    对于num1中的数字2，第二个数组中没有下一个更大的数字，因此输出 -1。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] nextGreaterElement(<span class="keyword">int</span>[] nums1, <span class="keyword">int</span>[] nums2) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[nums1.length];</span><br><span class="line"></span><br><span class="line">    Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums2.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; stack.peek() &lt; nums2[i]) &#123;</span><br><span class="line">            map.put(stack.pop(), nums2[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(nums2[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums1.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(nums1[i])) &#123;</span><br><span class="line">            res[i] = map.get(nums1[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res[i] = -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://leetcode-cn.com/problems/remove-k-digits/" target="_blank" rel="noopener">移调k位数字(leetcode 402)</a></p>
+<blockquote>
+<p>给定一个以字符串表示的非负整数 <em>num</em>，移除这个数中的 <em>k</em> 位数字，使得剩下的数字最小。</p>
+<p>输入: num = “1432219”, k = 3<br>输出: “1219”<br>解释: 移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">removeKdigits</span><span class="params">(String num, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> comp = num.length() - k;</span><br><span class="line"></span><br><span class="line">    StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">    Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num.length(); i++) &#123;</span><br><span class="line">        <span class="keyword">while</span> (k != <span class="number">0</span> &amp;&amp; !stack.isEmpty() &amp;&amp; stack.peek() &gt; num.charAt(i)) &#123;</span><br><span class="line">            stack.pop();</span><br><span class="line">            k--;</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(num.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 处理 "9" 1 这样的情况</span></span><br><span class="line">    <span class="keyword">while</span> (stack.size() &gt; comp) &#123;</span><br><span class="line">        stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Character c : stack) &#123;</span><br><span class="line">        res.append(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 去除先导 "0"</span></span><br><span class="line">    String r = res.toString();</span><br><span class="line">    <span class="keyword">int</span> m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (m &lt; r.length() &amp;&amp; r.charAt(m) == <span class="string">'0'</span>) &#123;</span><br><span class="line">        m++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> m == r.length() ? <span class="string">"0"</span> : r.substring(m);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://cheertt.top" target="_blank">cheertt</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/p/17317.html" class="next-post btn btn-default" title='Ubuntu16.04 安装CUDA9.0和cuDNN7.4.1'>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Ubuntu16.04 安装CUDA9.0和cuDNN7.4.1</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+            placeholder: '说点什么吧',
+            notify: false,
+            verify: true,
+            avatar: 'mm',
+            meta: 'nick,mail'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: 'zh-CN'.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一次刷到爽——单调栈"><span class="toc-text">一次刷到爽——单调栈</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+        访问量:
+        <strong id="busuanzi_value_site_pv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+        &nbsp; | &nbsp;
+        访客数:
+        <strong id="busuanzi_value_site_uv">
+            <i class="fa fa-spinner fa-spin"></i>
+        </strong>
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2019
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
